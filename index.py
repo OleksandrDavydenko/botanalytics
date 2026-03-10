@@ -808,6 +808,28 @@ def inject_modern_styles() -> None:
                 color: CanvasText !important;
             }
         }
+        @media (prefers-color-scheme: dark) {
+            .stApp {
+                color-scheme: light;
+            }
+            .stApp,
+            .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
+            .stApp p, .stApp li, .stApp label, .stApp span,
+            [data-testid="stMarkdownContainer"],
+            [data-testid="stMarkdownContainer"] *,
+            [data-baseweb="tab-panel"],
+            [data-baseweb="tab-panel"] *,
+            [data-testid="stMetricLabel"],
+            [data-testid="stMetricValue"] {
+                color: #0f172a !important;
+            }
+            [data-baseweb="tab"] {
+                color: #334155 !important;
+            }
+            [data-baseweb="tab"][aria-selected="true"] {
+                color: #c81e1e !important;
+            }
+        }
         </style>
         """,
         unsafe_allow_html=True,
