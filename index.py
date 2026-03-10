@@ -721,8 +721,26 @@ def inject_modern_styles() -> None:
     st.markdown(
         """
         <style>
+        :root {
+            color-scheme: light;
+            --ui-text-main: #0f172a;
+            --ui-text-muted: #334155;
+            --ui-surface: #ffffff;
+            --ui-surface-soft: #f8fafc;
+            --ui-border: #dbe7ff;
+            --ui-accent: #1d4ed8;
+        }
         .stApp {
             background: radial-gradient(circle at 10% 10%, #f4f8ff 0%, #f8fafc 45%, #ffffff 100%);
+            color: var(--ui-text-main);
+        }
+        .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
+        .stApp p, .stApp li, .stApp label, .stApp span,
+        .stMarkdown, [data-testid="stMarkdownContainer"] {
+            color: var(--ui-text-main);
+        }
+        .stCaption, [data-testid="stCaptionContainer"] {
+            color: var(--ui-text-muted) !important;
         }
         .hero-wrap {
             padding: 1rem 1.2rem;
@@ -778,6 +796,35 @@ def inject_modern_styles() -> None:
             color: #334155;
             font-size: 0.95rem;
         }
+        [data-baseweb="tab-list"] {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--ui-border);
+            border-radius: 12px;
+            padding: 0.2rem;
+            gap: 0.3rem;
+        }
+        [data-baseweb="tab"] {
+            color: var(--ui-text-main) !important;
+            background: var(--ui-surface-soft);
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        [data-baseweb="tab"][aria-selected="true"] {
+            color: #ffffff !important;
+            background: var(--ui-accent);
+            border-color: var(--ui-accent);
+        }
+        [data-testid="stTextInput"] input {
+            color: var(--ui-text-main) !important;
+            background: var(--ui-surface) !important;
+        }
+        [data-testid="stForm"] button,
+        [data-testid="stFormSubmitButton"] button {
+            color: #ffffff !important;
+            background: var(--ui-accent) !important;
+            border: 1px solid var(--ui-accent) !important;
+        }
         @media (max-width: 640px) {
             .login-wrap {
                 padding: 0.8rem 0.85rem;
@@ -787,6 +834,11 @@ def inject_modern_styles() -> None:
             }
             .login-sub {
                 font-size: 0.9rem;
+            }
+            [data-baseweb="tab"] {
+                font-size: 0.92rem;
+                min-height: 40px;
+                padding: 0.3rem 0.55rem;
             }
         }
         </style>
