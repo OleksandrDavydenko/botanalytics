@@ -39,7 +39,19 @@ INTERNAL_EXCLUDED_USERS = {
     "Давиденко Олександр",
     "Ступа Олександр",
 }
-REPORT_PASSWORD = "ftpbot"
+
+
+def resolve_report_password() -> str:
+    try:
+        secret_password = st.secrets.get("PASSWORD")
+    except Exception:
+        # Streamlit throws if secrets.toml is missing in local runs.
+        secret_password = None
+
+    if secret_password and str(secret_password).strip():
+        return str(secret_password).strip()
+
+    return os.getenv("REPORT_PASSWORD", "").strip()
 
 
 def normalize_text(series: pd.Series) -> pd.Series:
@@ -782,6 +794,11 @@ def require_report_access() -> bool:
     if st.session_state.get("report_authenticated", False):
         return True
 
+    report_password = resolve_report_password()
+    if not report_password:
+        st.error("Пароль для доступу не налаштовано. Додайте PASSWORD у Secrets.")
+        return False
+
     st.title("Вхід до звіту")
     st.caption("Для перегляду аналітики введіть пароль.")
 
@@ -790,7 +807,7 @@ def require_report_access() -> bool:
         submitted = st.form_submit_button("Увійти")
 
     if submitted:
-        if password == REPORT_PASSWORD:
+        if password == report_password:
             st.session_state["report_authenticated"] = True
             st.rerun()
         else:
@@ -926,7 +943,7 @@ def main():
         "09_user_concentration_pareto.png": fig9,
     }
 
-    tabs = st.tabs(["Інсайти", "Графіки", "Таблиці"])
+    tabs = st.tabs(["Головна", "Графіки", "Таблиці"])
 
     with tabs[0]:
         st.subheader("Ключове зведення")
