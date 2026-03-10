@@ -1047,50 +1047,47 @@ def main():
         "09_user_concentration_pareto.png": fig9,
     }
 
-    tabs = st.tabs(["Головна", "Графіки", "Таблиці"])
+    st.subheader("Ключове зведення")
+    st.text(insights_text)
 
-    with tabs[0]:
-        st.subheader("Ключове зведення")
-        st.text(insights_text)
-        st.subheader("Міра концентрації ТОП-користувачів")
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Частка ТОП-3", f"{top_users_metrics['top3_share']:.1f}%")
-        c2.metric("Частка ТОП-10", f"{top_users_metrics['top10_share']:.1f}%")
-        c3.metric("HHI", f"{top_users_metrics['hhi']:.0f}")
+    st.subheader("Міра концентрації ТОП-користувачів")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Частка ТОП-3", f"{top_users_metrics['top3_share']:.1f}%")
+    c2.metric("Частка ТОП-10", f"{top_users_metrics['top10_share']:.1f}%")
+    c3.metric("HHI", f"{top_users_metrics['hhi']:.0f}")
 
-        with st.expander("Пояснення термінів"):
-            st.text(terms_explanation_text)
+    st.subheader("Пояснення термінів")
+    st.text(terms_explanation_text)
 
-    with tabs[1]:
-        st.pyplot(fig1, clear_figure=False)
-        st.pyplot(fig2, clear_figure=False)
-        st.pyplot(fig3, clear_figure=False)
-        st.pyplot(fig4, clear_figure=False)
-        st.pyplot(fig5, clear_figure=False)
-        st.pyplot(fig6, clear_figure=False)
-        st.pyplot(fig7, clear_figure=False)
-        st.pyplot(fig8, clear_figure=False)
-        st.pyplot(fig9, clear_figure=False)
-        st.info(
-            "Що показує графік 'Концентрація активності користувачів (Pareto)': "
-            "по осі X - накопичена частка користувачів (%), по осі Y - накопичена частка всіх подій (%). "
-            "Чим вище крива над пунктирною діагоналлю, тим сильніше активність зосереджена у невеликої групи користувачів."
-        )
+    st.subheader("Графіки")
+    st.pyplot(fig1, clear_figure=False)
+    st.pyplot(fig2, clear_figure=False)
+    st.pyplot(fig3, clear_figure=False)
+    st.pyplot(fig4, clear_figure=False)
+    st.pyplot(fig5, clear_figure=False)
+    st.pyplot(fig6, clear_figure=False)
+    st.pyplot(fig7, clear_figure=False)
+    st.pyplot(fig8, clear_figure=False)
+    st.pyplot(fig9, clear_figure=False)
+    st.info(
+        "Що показує графік 'Концентрація активності користувачів (Pareto)': "
+        "по осі X - накопичена частка користувачів (%), по осі Y - накопичена частка всіх подій (%). "
+        "Чим вище крива над пунктирною діагоналлю, тим сильніше активність зосереджена у невеликої групи користувачів."
+    )
 
-    with tabs[2]:
-        st.subheader("Зведені таблиці")
-        st.write("Summary")
-        st.dataframe(tables["summary"], use_container_width=True)
-        st.write("Популярність функцій")
-        st.dataframe(tables["action_popularity"], use_container_width=True)
-        st.write("Використання по числах місяця")
-        st.dataframe(dom, use_container_width=True)
-        st.write("Використання по днях тижня")
-        st.dataframe(weekday_df, use_container_width=True)
-        st.write("Піки функцій по числах місяця")
-        st.dataframe(peaks.head(50), use_container_width=True)
-        st.write("Переходи між функціями")
-        st.dataframe(transitions.head(50), use_container_width=True)
+    st.subheader("Зведені таблиці")
+    st.write("Summary")
+    st.dataframe(tables["summary"], use_container_width=True)
+    st.write("Популярність функцій")
+    st.dataframe(tables["action_popularity"], use_container_width=True)
+    st.write("Використання по числах місяця")
+    st.dataframe(dom, use_container_width=True)
+    st.write("Використання по днях тижня")
+    st.dataframe(weekday_df, use_container_width=True)
+    st.write("Піки функцій по числах місяця")
+    st.dataframe(peaks.head(50), use_container_width=True)
+    st.write("Переходи між функціями")
+    st.dataframe(transitions.head(50), use_container_width=True)
 
     for fig in chart_figs.values():
         plt.close(fig)
