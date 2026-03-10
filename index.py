@@ -760,6 +760,35 @@ def inject_modern_styles() -> None:
             font-weight: 700;
             margin-top: 0.2rem;
         }
+        .login-wrap {
+            margin: 0.4rem 0 0.8rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid #dbe7ff;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+        .login-title {
+            color: #0f172a;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .login-sub {
+            margin-top: 0.25rem;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 640px) {
+            .login-wrap {
+                padding: 0.8rem 0.85rem;
+            }
+            .login-title {
+                font-size: 1.2rem;
+            }
+            .login-sub {
+                font-size: 0.9rem;
+            }
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -799,8 +828,15 @@ def require_report_access() -> bool:
         st.error("Пароль для доступу не налаштовано. Додайте PASSWORD у Secrets.")
         return False
 
-    st.title("Вхід до звіту")
-    st.caption("Для перегляду аналітики введіть пароль.")
+    st.markdown(
+        """
+        <div class="login-wrap">
+            <div class="login-title">Вхід до звіту</div>
+            <div class="login-sub">Для перегляду аналітики введіть пароль.</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     with st.form("report_login_form", clear_on_submit=False):
         password = st.text_input("Пароль", type="password")
