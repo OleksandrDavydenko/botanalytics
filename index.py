@@ -1059,7 +1059,7 @@ def main():
     st.subheader("Пояснення термінів")
     st.text(terms_explanation_text)
 
-    st.subheader("Графіки")
+    st.subheader("Візуалізації")
     st.pyplot(fig1, clear_figure=False)
     st.pyplot(fig2, clear_figure=False)
     st.pyplot(fig3, clear_figure=False)
@@ -1075,7 +1075,7 @@ def main():
         "Чим вище крива над пунктирною діагоналлю, тим сильніше активність зосереджена у невеликої групи користувачів."
     )
 
-    st.subheader("Зведені таблиці")
+    st.subheader("Табличні дані")
     st.write("Summary")
     st.dataframe(tables["summary"], use_container_width=True)
     st.write("Популярність функцій")
