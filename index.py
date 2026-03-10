@@ -778,6 +778,22 @@ def inject_modern_styles() -> None:
             color: #334155;
             font-size: 0.95rem;
         }
+        [data-testid="stTextInput"] input {
+            color: #0f172a !important;
+            background: #ffffff !important;
+            border: 1px solid #94a3b8 !important;
+            -webkit-text-fill-color: #0f172a !important;
+            caret-color: #0f172a !important;
+        }
+        [data-testid="stFormSubmitButton"] button {
+            color: #ffffff !important;
+            background: #1d4ed8 !important;
+            border: 1px solid #1d4ed8 !important;
+        }
+        [data-testid="stFormSubmitButton"] button:hover {
+            background: #1e40af !important;
+            border-color: #1e40af !important;
+        }
         @media (max-width: 640px) {
             .login-wrap {
                 padding: 0.8rem 0.85rem;
@@ -828,6 +844,17 @@ def inject_modern_styles() -> None:
             }
             [data-baseweb="tab"][aria-selected="true"] {
                 color: #c81e1e !important;
+            }
+            [data-testid="stTextInput"] input {
+                color: #0f172a !important;
+                background: #ffffff !important;
+                border-color: #64748b !important;
+                -webkit-text-fill-color: #0f172a !important;
+            }
+            [data-testid="stFormSubmitButton"] button {
+                color: #ffffff !important;
+                background: #1d4ed8 !important;
+                border-color: #1d4ed8 !important;
             }
         }
         </style>
